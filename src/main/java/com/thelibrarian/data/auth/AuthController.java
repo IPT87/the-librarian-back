@@ -42,8 +42,8 @@ public class AuthController {
 
     @GetMapping("/getCurrentUser")
     public int currentUserId(Authentication authentication){
-        var userId = authentication.getCredentials();
-        return (int) userId;
+        int userId = (int) authentication.getCredentials();
+        return userId;
     }
 
     @PostMapping("/login")

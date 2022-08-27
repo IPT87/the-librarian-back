@@ -24,7 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         http.cors().and().csrf().disable()
             .addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
             .authorizeRequests()
-            .antMatchers("/auth/login", "/auth/registro").permitAll()
+            .antMatchers("https://librarian-project.herokuapp.com/auth/login", "https://librarian-project.herokuapp.com/auth/registro").permitAll()
                 .antMatchers("/reserve/export/**").permitAll()
             .antMatchers(HttpMethod.GET,"/h2-console/**").permitAll()
             .antMatchers(HttpMethod.GET,"/get/random").permitAll()

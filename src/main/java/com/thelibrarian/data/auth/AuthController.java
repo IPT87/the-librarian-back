@@ -13,7 +13,6 @@ import com.thelibrarian.integration.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,7 +26,6 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.servlet.ModelAndView;
 
 @RequiredArgsConstructor
 @RestController
@@ -75,19 +73,18 @@ public class AuthController {
     }
 
     private String getToken(UsersEntity user) {	
-		Map<String, Object> data = new HashMap<String, Object>();
+		Map<String, Object> data = new HashMap<>();
 		
 		data.put("id", user.getId());
 		data.put("correo", user.getCorreo());
 		data.put("authorities", Arrays.asList("ROLE_USER"));
-		
-		String token = Jwts.builder().setId("springEventos")
+
+        return Jwts.builder().setId("springEventos")
 				.setSubject(user.getNombre()).addClaims(data)
 				.setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(new Date(System.currentTimeMillis() + (24*60*60*1000))) // Caduca en un día
 				.signWith(SignatureAlgorithm.HS512, SecurityConstants.SECRET_KEY).compact();
-		
-		return token;
+
 	}
 
     //Reset Password

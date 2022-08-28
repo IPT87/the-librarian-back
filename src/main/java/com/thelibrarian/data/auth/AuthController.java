@@ -32,6 +32,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/auth")
+@CrossOrigin("*")
 public class AuthController {
 
     @Autowired

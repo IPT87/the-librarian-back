@@ -23,14 +23,14 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data @NoArgsConstructor
 @AllArgsConstructor
-/*@Table(
+@Table(
         uniqueConstraints= {
             @UniqueConstraint(name = "UniqueCorreo",columnNames={"correo"})
         }
-    )*/
+    )
 public class UsersEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Integer id;
     @NotNull(message = "El nombre es obligatorio")
